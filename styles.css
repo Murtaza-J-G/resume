@@ -1,0 +1,421 @@
+/*=============== GOOGLE FONTS - Insert link for typography ===============*/
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+/*=============== VARIABLES CSS ===============*/
+:root {
+  /*========== Colors ==========*/
+  /*Color mode HSL(hue, saturation, lightness)*/
+  --first-color: hsl(90, 82%, 68%);
+  --first-color-alt: hsl(90, 78%, 64%);
+  --title-color: hsl(0, 0%, 4%);
+  --black-color: hsl(227, 25%, 11%);
+  --body-color: hsl(260, 9%, 94%);
+
+  /*========== Font and typography ==========*/
+  /*.5rem = 8px | 1rem = 16px ...*/
+  --body-font: "Montserrat", sans-serif;
+  --biggest-font-size: 3rem;
+  --h1-font-size: 1.5rem;
+  --h2-font-size: 1.25rem;
+  --h3-font-size: 1rem;
+  --normal-font-size: .938rem;
+  --small-font-size: .813rem;
+  --smaller-font-size: .75rem;
+
+  /*========== Font weight ==========*/
+  --font-regular: 400;
+  --font-medium: 500;
+  --font-semi-bold: 600;
+
+  /*========== z index ==========*/
+  --z-tooltip: 10;
+  --z-fixed: 100;
+}
+
+/*========== Responsive typography ==========*/
+@media (width >= 1150px) {
+  :root {
+    --biggest-font-size: 4.5rem;
+    --h1-font-size: 2rem;
+    --h2-font-size: 1.5rem;
+    --h3-font-size: 1.25rem;
+    --normal-font-size: 1rem;
+    --small-font-size: .875rem;
+    --smaller-font-size: .813rem;
+  }
+}
+
+/*=============== BASE ===============*/
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body,
+input,
+button {
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+}
+
+body {
+  background-color: var(--body-color);
+  color: var(--title-color);
+}
+
+input,
+button {
+  background: none;
+  border: none;
+  outline: none;
+}
+
+h1, h2, h3, h4 {
+  color: var(--title-color);
+  font-weight: var(--font-semi-bold);
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/*=============== REUSABLE CSS CLASSES ===============*/
+.container {
+  max-width: 1120px;
+  margin-inline: 1rem;
+}
+
+.grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.section {
+  padding-block: 2rem;
+}
+
+.section__title {
+  width: max-content;
+  font-size: var(--normal-font-size);
+  font-weight: var(--font-medium);
+  margin-bottom: 1.25rem;
+  padding: 0.25rem 1rem 0.25rem;
+  background-color: var(--first-color);
+  color: var(--title-color);
+}
+
+.main {
+  overflow: hidden;
+}
+
+/* Show & hide sections */
+.main__area [data-content] {
+  display: none;
+  opacity: 0;
+  transform: translateY(1rem);
+  transition: opacity 0.4s ease, transform 0.4s ease; 
+}
+
+.main-active[data-content]{
+  display: grid;
+}
+
+.main-active[data-content].show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.profile__button.main-active {
+  background-color: var(--first-color);
+  transition: background-color 0.3s ease;
+}
+
+
+
+/* Active button */
+
+
+/*============ PROFILE ============*/
+.profile__container {
+  padding-top: 1.5rem;
+}
+
+.profile__image {
+  width: 240px;
+  height: 340px;
+  border: 3px dashed var(--black-color);
+  transform: rotate(5deg);
+  margin: 0 auto 2rem;
+  display: grid;
+}
+
+.profile__img {
+  width:  200px;
+  transform: translateY(0.5rem) rotate(-5deg);
+  justify-self: center;
+  align-self: flex-end;
+}
+
+.profile__greeting {
+  text-align:  center;
+  font-size: var(--h1-font-size);
+  font-weight: var(--font-regular);
+}
+
+.profile__name {
+  text-align: center;
+  font-size: var(--biggest-font-size);
+}
+
+.profile__buttons {
+  display: flex;
+  column-gap: 0.5rem;
+  justify-content: center;
+  margin-block: 1rem 3rem;
+  border: 1px solid var(--black-color);
+  box-shadow: 0 4px 0 var(--black-color);
+  border-radius: 4rem;
+  padding:  0.25rem;
+}
+
+.profile__button {
+  background-color: var(--body-color);
+  color:  var(--title-color);
+  padding:  0.75rem 1.5rem;
+  border-radius: 4rem;
+  font-weight: var(--font-medium);
+  cursor: pointer;
+  transition: background-color 0.4s;
+}
+
+.profile__button:hover {
+  background-color: var(--first-color-alt);
+}
+
+/*============ SKILLS ============*/
+.skills__list{
+  list-style: initial;
+  padding-left: 2rem;
+}
+
+/*============ TOOLS ============*/
+.tools__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+}
+
+.tools__item {
+  display: flex;
+  align-items: center;
+  column-gap: 0.25rem;
+  cursor: default;
+  transition: transform 0.4s;
+}
+
+.tools__item:hover {
+  transform: translateX(0.5rem);
+}
+
+.tools__img {
+  width: 1rem;
+}
+
+.tools__name {
+  font-size: var(--small-font-size);
+}
+
+/*============ EXPERIENCE ============*/
+.experience__content {
+  display: grid;
+  row-gap: 2rem;
+}
+
+.experience__titles {
+  display: grid;
+  row-gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.experience__titles :is(p,h3){
+  font-size: var(--normal-font-size);
+  font-weight: var(--font-semi-bold);
+}
+
+.experience__list {
+  list-style: initial;
+  padding-left: 2rem;
+}
+
+/*============ EDUCATION ============*/
+.education__list {
+  display: grid;
+  row-gap: 1.5rem;
+}
+
+.education__item {
+  display: grid;
+  row-gap: 0.25rem;
+}
+
+.education__item :is(p,h3) {
+  font-size: var(--normal-font-size);
+  font-weight: var(--font-semi-bold);
+}
+
+
+
+/*============ PROJECTS ============*/
+.projects__link{
+  display: block;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.projects__img {
+  transition: transform 0.4s;
+}
+
+.projects__link:hover .projects__img {
+  transform: scale(1.1);
+}
+
+.projects__name{
+  font-size: var(--normal-font-size);
+  margin-bottom: 0.5rem;
+}
+
+/*============ FOOTER ============*/
+.footer__container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem 2rem;
+  padding-block: 2rem;
+}
+
+.footer__link {
+  display: flex;
+  align-items: center;
+  column-gap: 0.5rem;
+  color: var(--title-color);
+  transition: transform 0.4s;
+
+}
+
+.footer__link i {
+  font-size: 1.5rem;
+}
+
+.footer__link span {
+  font-weight: var(--font-medium);
+}
+
+.footer__link:hover {
+  transform: translateY(-0.5rem);
+}
+
+/*============ BREAKPOINTS ============*/
+/* For medium devices <> */
+@media (width >= 768px) {
+  .projects__content{
+    grid-template-columns: repeat(2, 350px);
+  }
+}
+
+
+
+/* For large devices <> */
+@media (width >= 1150px) {
+  .main__content{
+    max-width: 1120px;
+    margin: 4rem auto;
+    padding-inline: 10rem;
+    box-shadow: 0 0 16px hsla(0, 0%, 0%, 0.1);
+  }
+
+  .main__group {
+    display: grid;
+    grid-template-columns: 320px 530px;
+  }
+
+  .main__left {
+    border-right: 3px dashed var(--black-color);
+  }
+
+  .section {
+    padding-block: 2.5rem;
+  }
+
+  .profile__container{
+    grid-template-columns: 540px 260px;
+    column-gap: 2rem;
+    align-items: center;
+    padding-top: 2rem;
+  }
+
+  .profile__data {
+    order: -1;
+  }
+
+  .profile__greeting,
+  .profile__name {
+    text-align: initial;
+  }
+
+  .profile__buttons {
+    justify-self: flex-start;
+  }
+
+  .profile__image {
+    margin: 0;
+  }
+
+  .tools__list {
+    flex-direction: column;
+    align-items: initial;
+  }
+
+  .tools__item {
+    column-gap: 0.5rem;
+  }
+
+  .tools__img {
+    width: 1.5rem;
+  }
+
+  .tools__name{
+    font-size: var(--normal-font-size);
+  }
+
+  .experience__titles {
+    grid-template-columns: 120px max-content;
+    column-gap: 2rem;
+  }
+
+  .experience__list {
+    padding-left: 10.5rem;
+  }
+
+  .education__item {
+    grid-template-columns: 115px max-content;
+    column-gap: 2.5rem;
+  }
+
+  .footer__container{
+    justify-content: space-between;
+    padding-block: 3rem;
+  }
+}
